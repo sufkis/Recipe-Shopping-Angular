@@ -25,7 +25,8 @@ export class RecipeEditComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.recipeForm);
+    if (this.editMode) this.recipeService.updateRecipe(this.id, this.recipeForm.value);
+    else this.recipeService.addRecipe(this.recipeForm.value);
   }
 
   onAddIngredient() {
@@ -40,7 +41,7 @@ export class RecipeEditComponent implements OnInit {
     );
   }
 
-  get controls() { // a getter!
+  get controls() {
     return (<FormArray>this.recipeForm.get('ingredients')).controls;
   }
 
